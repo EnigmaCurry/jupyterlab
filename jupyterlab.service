@@ -1,0 +1,10 @@
+[Unit]
+Description=enigmacurry/jupyterlab
+
+[Service]
+ExecStartPre=podman rm -fi jupyterlab
+ExecStart=podman run --rm --pull=never --name jupyterlab -p 10000:10000 -v jupyterlab_config:/home/jovyan/.jupyter -v /home/ryan/jupyter:/home/jovyan/work enigmacurry/jupyterlab
+Restart=on-failure
+
+[Install]
+WantedBy=default.target
